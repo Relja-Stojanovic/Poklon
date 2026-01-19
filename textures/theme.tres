@@ -1,0 +1,17 @@
+[gd_resource type="Theme" format=3 uid="uid://csy5xf0m78gm2"]
+
+[resource]
+Button/font_sizes/font_size = 20
+CheckBox/font_sizes/font_size = 20
+Label/font_sizes/font_size = 24
+MarginContainer/constants/margin_bottom = 5
+MarginContainer/constants/margin_left = 5
+MarginContainer/constants/margin_right = 5
+MarginContainer/constants/margin_top = 5
+MenuButton/font_sizes/font_size = 24
+PopupMenu/font_sizes/font_size = 20
+RichTextLabel/font_sizes/bold_font_size = 24
+RichTextLabel/font_sizes/bold_italics_font_size = 24
+RichTextLabel/font_sizes/italics_font_size = 24
+RichTextLabel/font_sizes/mono_font_size = 24
+RichTextLabel/font_sizes/normal_font_size = 24
