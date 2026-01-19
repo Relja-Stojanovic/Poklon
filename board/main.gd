@@ -1,5 +1,8 @@
 extends Control
 
+signal selected_element(data: GameData, pos: Vector2i)
+signal selected_target(data: GameData, pos: Vector2i)
+
 var astar: AStarGrid2D = AStarGrid2D.new()
 var data: GameData
 var has_selected: bool = false
@@ -54,26 +57,20 @@ func _on_board_clicked(pos: Vector2i) -> void:
 		if pos == selected_pos:
 			selected_pos = Vector2i.MIN
 			has_selected = false
-			print("Unselected")
 		elif data.is_empty(pos):
 			var path: PackedVector2Array = astar.get_id_path(selected_pos, pos, false)
 			if not path.is_empty():
 				data.move_element(selected_pos, pos)
 				selected_pos = Vector2i.MIN
 				has_selected = false
-				print("Moved!")
-			else:
-				print("No path")
 		else:
 			selected_pos = pos
-			print("Clicked diff")
+			selected_element.emit(data, selected_pos)
 	else:
 		if not data.is_empty(pos):
 			selected_pos = pos
 			has_selected = true
-			print("Selected!")
-		else:
-			print("Empty")
+			selected_element.emit(data, selected_pos)
 
 func _notification(what: int) -> void:
 	if what == NOTIFICATION_WM_CLOSE_REQUEST:
