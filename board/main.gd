@@ -1,8 +1,9 @@
 extends Control
 
+# TODO: Visuals should be moved to its own sceen
 signal selected_element(data: GameData, pos: Vector2i)
 signal selected_target(data: GameData, pos: Vector2i)
-signal selection_canceled(data: GameData)
+signal selected_ended(data: GameData)
 
 var astar: AStarGrid2D = AStarGrid2D.new()
 var data: GameData
@@ -43,7 +44,8 @@ func sync_pathfinding() -> void:
 		astar.fill_solid_region(astar.region, false)
 		for element in data.elements:
 			astar.set_point_solid(element, true)
-	
+
+# TODO: Pathfinding should be its own class
 func _on_element_moved(_data: GameData, old_pos: Vector2i, new_pos: Vector2i) -> void:
 	astar.set_point_solid(old_pos, false)
 	astar.set_point_solid(new_pos, true)
@@ -59,18 +61,19 @@ func _on_board_clicked(pos: Vector2i) -> void:
 		if pos == selected_pos:
 			selected_pos = Vector2i.MIN
 			has_selected = false
-			selection_canceled.emit(data)
+			selected_ended.emit(data)
 		elif data.is_empty(pos):
 			var path: PackedVector2Array = astar.get_id_path(selected_pos, pos, false)
 			if not path.is_empty():
 				data.move_element(selected_pos, pos)
+				var connected: bool = GameService.game_strategy.execute_match(data, pos)
 				selected_target.emit(data, selected_pos)
+				if not connected or data.elements.is_empty():
+					GameService.spawn_elements(data)
+				
 				selected_pos = Vector2i.MIN
 				has_selected = false
-				#TODO: Fix this shit
-				$Board/SelectedElementBackground.visible = false
-				$Board/SelectedTargetBackground.visible = false
-				$Board/SelectedElement.visible = false
+				selected_ended.emit(data)
 		else:
 			selected_pos = pos
 			selected_element.emit(data, selected_pos)

@@ -37,6 +37,7 @@ static func spawn_elements(data: GameData) -> void:
 		var pos: Vector2i = empty_cells.pop_back()
 		var element: int = data.preview.pop_back()
 		data.add_element(pos, element)
+		game_strategy.execute_match(data, pos)
 	create_preview(data)
 
 static func valid_pos(data: GameData, pos: Vector2i) -> bool:

@@ -11,3 +11,5 @@ func _on_root_selected_element(data: GameData, pos: Vector2i) -> void:
 	position = (Vector2(pos) + Vector2(0.5, 0.5)) * Global.TILE_SIZE
 	visible = true
 	
+func _on_root_selected_ended(_data: GameData) -> void:
+	visible = false

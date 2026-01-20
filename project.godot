@@ -22,6 +22,7 @@ DataHandler="*res://file/DataHandler.gd"
 Path="*res://file/Path.gd"
 Global="*res://Global.gd"
 Element="*res://data/Element.gd"
+Chat="*res://data/Chat.gd"
 
 [debug]
 

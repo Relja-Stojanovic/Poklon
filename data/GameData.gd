@@ -12,8 +12,8 @@ signal preview_changed(data: GameData)
 @export var elements: Dictionary[Vector2i, int] = {}
 @export var preview: Array[int] = []
 @export var score: int = 0
-@export var chat: Array[String] = []
 
+#region Element
 func is_empty(pos: Vector2i) -> bool:
 	return not elements.has(pos)
 
@@ -34,10 +34,13 @@ func move_element(element_pos: Vector2i, new_pos: Vector2i) -> void:
 	elements.erase(element_pos)
 	elements[new_pos] = element
 	element_moved.emit(self, element_pos, new_pos)
+#endregion
 
+#region Score
 func add_score(amount: int) -> void:
 	set_score(score+amount)
 	
 func set_score(value: int) -> void:
 	score = value
 	score_changed.emit(self)
+#endregion

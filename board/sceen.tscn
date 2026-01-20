@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://ci7cukdcxsjpq"]
+[gd_scene load_steps=27 format=3 uid="uid://ci7cukdcxsjpq"]
 
 [ext_resource type="Theme" uid="uid://csy5xf0m78gm2" path="res://textures/theme.tres" id="1_es2p6"]
 [ext_resource type="Script" uid="uid://kuowvdd77jvp" path="res://board/main.gd" id="1_tmt7i"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" uid="uid://da7s0t81p7udb" path="res://board/ui/board/board_background.gd" id="3_udv86"]
 [ext_resource type="Script" uid="uid://cbfbrqpjlwm2u" path="res://board/ui/menu/menu_settings.gd" id="3_v6giy"]
 [ext_resource type="Script" uid="uid://djbimqgro8vku" path="res://board/ui/board.gd" id="6_qb5gv"]
+[ext_resource type="Script" uid="uid://dl4c1jl8mehsk" path="res://board/ui/chat.gd" id="7_wdrx5"]
 [ext_resource type="Script" uid="uid://mxta8bkkeq8j" path="res://board/ui/preview/preview.gd" id="7_x7vg5"]
 [ext_resource type="Script" uid="uid://bp175he2qetv1" path="res://board/ui/new_game_popup.gd" id="8_ciyxn"]
 [ext_resource type="Script" uid="uid://p626t6c8uiq2" path="res://board/ui/board/elements.gd" id="9_ox5xr"]
@@ -156,16 +157,11 @@ custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 size_flags_horizontal = 8
 focus_mode = 2
-text = "test
-najjači
-svojevoljenim
-c
-1
-2
-3"
+text = "Dobrodošli!"
 fit_content = true
 autowrap_mode = 0
 selection_enabled = true
+script = ExtResource("7_wdrx5")
 
 [node name="Board" type="SubViewport" parent="."]
 disable_3d = true
@@ -372,8 +368,10 @@ script = ExtResource("20_2g4vx")
 [connection signal="selected_element" from="." to="Board/SelectedElementBackground" method="_on_root_selected_element"]
 [connection signal="selected_element" from="." to="Board/SelectedElement" method="_on_root_selected_element"]
 [connection signal="selected_element" from="." to="AnimationPlayer" method="_on_root_selected_element"]
+[connection signal="selected_ended" from="." to="Board/SelectedElementBackground" method="_on_root_selected_ended"]
+[connection signal="selected_ended" from="." to="Board/SelectedTargetBackground" method="_on_root_selected_ended"]
+[connection signal="selected_ended" from="." to="Board/SelectedElement" method="_on_root_selected_ended"]
 [connection signal="selected_target" from="." to="Board/SelectedTargetBackground" method="_on_root_selected_target"]
-[connection signal="selection_canceled" from="." to="AnimationPlayer" method="_on_root_selection_canceled"]
 [connection signal="board_clicked" from="UI/Bottom/Board" to="." method="_on_board_clicked"]
 [connection signal="close_requested" from="NewGamePopup" to="NewGamePopup" method="_on_close_requested"]
 [connection signal="value_changed" from="NewGamePopup/MarginContainer/Options/Size/Input" to="NewGamePopup" method="_on_input_size"]
