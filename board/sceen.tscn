@@ -196,6 +196,7 @@ region_rect = Rect2(0, 0, 16, 16)
 script = ExtResource("13_yhshl")
 
 [node name="SelectedElement" type="Sprite2D" parent="Board"]
+visible = false
 texture = ExtResource("11_edoqs")
 region_enabled = true
 region_rect = Rect2(0, 0, 16, 16)
@@ -373,6 +374,7 @@ script = ExtResource("20_2g4vx")
 [connection signal="selected_element" from="." to="Board/SelectedElementBackground" method="_on_root_selected_element"]
 [connection signal="selected_element" from="." to="Board/SelectedElement" method="_on_root_selected_element"]
 [connection signal="selected_element" from="." to="AnimationPlayer" method="_on_root_selected_element"]
+[connection signal="selected_target" from="." to="Board/SelectedTargetBackground" method="_on_root_selected_target"]
 [connection signal="board_clicked" from="UI/Bottom/Board" to="." method="_on_board_clicked"]
 [connection signal="close_requested" from="NewGamePopup" to="NewGamePopup" method="_on_close_requested"]
 [connection signal="value_changed" from="NewGamePopup/MarginContainer/Options/Size/Input" to="NewGamePopup" method="_on_input_size"]

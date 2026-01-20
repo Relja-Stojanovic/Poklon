@@ -18,6 +18,7 @@ func _ready() -> void:
 	astar.cell_shape = AStarGrid2D.CELL_SHAPE_SQUARE
 	astar.diagonal_mode = AStarGrid2D.DIAGONAL_MODE_NEVER
 	astar.default_compute_heuristic = AStarGrid2D.HEURISTIC_MANHATTAN
+	astar.cell_size = Vector2i(Global.TILE_SIZE, Global.TILE_SIZE)
 	astar.update()
 	
 	sync_pathfinding()
@@ -61,8 +62,13 @@ func _on_board_clicked(pos: Vector2i) -> void:
 			var path: PackedVector2Array = astar.get_id_path(selected_pos, pos, false)
 			if not path.is_empty():
 				data.move_element(selected_pos, pos)
+				selected_target.emit(data, selected_pos)
 				selected_pos = Vector2i.MIN
 				has_selected = false
+				#TODO: Fix this shit
+				$Board/SelectedElementBackground.visible = false
+				$Board/SelectedTargetBackground.visible = false
+				$Board/SelectedElement.visible = false
 		else:
 			selected_pos = pos
 			selected_element.emit(data, selected_pos)
