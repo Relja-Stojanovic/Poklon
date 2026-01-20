@@ -2,6 +2,7 @@ extends Control
 
 signal selected_element(data: GameData, pos: Vector2i)
 signal selected_target(data: GameData, pos: Vector2i)
+signal selection_canceled(data: GameData)
 
 var astar: AStarGrid2D = AStarGrid2D.new()
 var data: GameData
@@ -58,6 +59,7 @@ func _on_board_clicked(pos: Vector2i) -> void:
 		if pos == selected_pos:
 			selected_pos = Vector2i.MIN
 			has_selected = false
+			selection_canceled.emit(data)
 		elif data.is_empty(pos):
 			var path: PackedVector2Array = astar.get_id_path(selected_pos, pos, false)
 			if not path.is_empty():

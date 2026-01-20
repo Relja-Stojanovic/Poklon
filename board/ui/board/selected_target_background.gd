@@ -9,6 +9,7 @@ func _ready() -> void:
 		background = Global.to_texture(Element.BACKGROUND_BALL)
 		
 	region_rect.position = background * Global.TILE_SIZE
+	region_rect.size = Vector2(Global.TILE_SIZE, Global.TILE_SIZE)
 
 func _on_root_selected_target(_data: GameData, pos: Vector2i) -> void:
 	position = pos * Global.TILE_SIZE

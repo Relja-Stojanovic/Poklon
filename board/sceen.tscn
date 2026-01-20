@@ -45,7 +45,8 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_2g4vx"]
 resource_name = "element_select"
-length = 0.4
+length = 0.9
+loop_mode = 1
 step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -54,10 +55,10 @@ tracks/0/path = NodePath("Board/SelectedElement:scale")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.39999998),
-"transitions": PackedFloat32Array(0.5, 0.3077861),
+"times": PackedFloat32Array(0, 0.3, 0.6, 0.9),
+"transitions": PackedFloat32Array(-0.5, -0.5, -0.5, 1),
 "update": 0,
-"values": [Vector2(1, 1), Vector2(1, 0.75)]
+"values": [Vector2(1, 1), Vector2(0.8, 0.8), Vector2(1.2, 1.2), Vector2(1, 1)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_j4b6b"]
@@ -184,7 +185,6 @@ visible = false
 texture = ExtResource("11_edoqs")
 centered = false
 region_enabled = true
-region_rect = Rect2(0, 0, 16, 16)
 script = ExtResource("11_pcm8c")
 
 [node name="SelectedTargetBackground" type="Sprite2D" parent="Board"]
@@ -192,14 +192,12 @@ visible = false
 texture = ExtResource("11_edoqs")
 centered = false
 region_enabled = true
-region_rect = Rect2(0, 0, 16, 16)
 script = ExtResource("13_yhshl")
 
 [node name="SelectedElement" type="Sprite2D" parent="Board"]
 visible = false
 texture = ExtResource("11_edoqs")
 region_enabled = true
-region_rect = Rect2(0, 0, 16, 16)
 script = ExtResource("14_wjnsj")
 
 [node name="Preview" type="SubViewport" parent="."]
@@ -375,6 +373,7 @@ script = ExtResource("20_2g4vx")
 [connection signal="selected_element" from="." to="Board/SelectedElement" method="_on_root_selected_element"]
 [connection signal="selected_element" from="." to="AnimationPlayer" method="_on_root_selected_element"]
 [connection signal="selected_target" from="." to="Board/SelectedTargetBackground" method="_on_root_selected_target"]
+[connection signal="selection_canceled" from="." to="AnimationPlayer" method="_on_root_selection_canceled"]
 [connection signal="board_clicked" from="UI/Bottom/Board" to="." method="_on_board_clicked"]
 [connection signal="close_requested" from="NewGamePopup" to="NewGamePopup" method="_on_close_requested"]
 [connection signal="value_changed" from="NewGamePopup/MarginContainer/Options/Size/Input" to="NewGamePopup" method="_on_input_size"]
