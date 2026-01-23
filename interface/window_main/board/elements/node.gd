@@ -4,6 +4,7 @@ func _ready() -> void:
 	Global.data.element_added.connect(_on_element_added)
 	Global.data.element_moved.connect(_on_element_moved)
 	Global.data.element_removed.connect(_on_element_removed)
+	Global.data.elements_removed.connect(_on_elements_removed)
 	for pos in Global.data.elements:
 		_on_element_added(Global.data, pos)
 
@@ -20,3 +21,7 @@ func _on_element_moved(data: GameData, old_pos: Vector2i, new_pos: Vector2i) -> 
 	
 func _on_element_removed(_data: GameData, pos: Vector2i) -> void:
 	erase_cell(pos)
+
+func _on_elements_removed(_data: GameData, array: Array[Vector2i]) -> void:
+	for pos in array:
+		erase_cell(pos)

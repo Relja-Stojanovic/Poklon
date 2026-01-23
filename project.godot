@@ -18,11 +18,11 @@ config/icon="res://textures/icon.svg"
 
 [autoload]
 
-DataHandler="*res://file/DataHandler.gd"
-Path="*res://file/Path.gd"
+DataHandler="*res://file/handler/DataHandler.gd"
+Path="*res://file/handler/Path.gd"
 Global="*res://Global.gd"
-Element="*res://data/Element.gd"
-Chat="*res://data/Chat.gd"
+Element="*res://file/data/Element.gd"
+Chat="*res://file/data/Chat.gd"
 
 [debug]
 
@@ -30,10 +30,20 @@ gdscript/warnings/integer_division=0
 
 [display]
 
-window/size/viewport_width=712
+window/size/viewport_width=512
 window/size/viewport_height=564
 window/stretch/mode="canvas_items"
 window/handheld/orientation=1
+
+[file_customization]
+
+folder_colors={
+"res://file/": "yellow",
+"res://interface/": "green",
+"res://logic/": "teal",
+"res://logic/game_strategy/": "blue",
+"res://textures/": "purple"
+}
 
 [input]
 

@@ -11,9 +11,9 @@ func _ready() -> void:
 	region_rect.position = background * Global.TILE_SIZE
 	region_rect.size = Vector2(Global.TILE_SIZE, Global.TILE_SIZE)
 
-func _on_root_selected_target(_data: GameData, pos: Vector2i) -> void:
+func _on_element_select(pos: Vector2i) -> void:
 	position = pos * Global.TILE_SIZE
 	visible = true
 
-func _on_root_selected_ended(_data: GameData) -> void:
+func _on_element_cancel() -> void:
 	visible = false

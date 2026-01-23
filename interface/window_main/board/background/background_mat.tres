@@ -1,0 +1,11 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://cgrwo7btxfexx"]
+
+[ext_resource type="Shader" uid="uid://br8gkkily4yeb" path="res://interface/window_main/board/background/shader.gdshader" id="1_p2brl"]
+
+[resource]
+shader = ExtResource("1_p2brl")
+shader_parameter/replace_color = Color(1, 1, 1, 1)
+shader_parameter/color_1 = Color(0.56078434, 0.003921569, 0.46666667, 1)
+shader_parameter/color_2 = Color(0.21176471, 0.003921569, 0.52156866, 1)
+shader_parameter/speed = 1.0
+shader_parameter/wave_scale = 400.0
