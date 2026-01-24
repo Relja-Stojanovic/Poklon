@@ -13,3 +13,6 @@ func _on_element_select(pos: Vector2i) -> void:
 	
 func _on_element_cancel() -> void:
 	visible = false
+
+func _on_target_select(_pos: Vector2i, _path: PackedVector2Array) -> void:
+	visible = false

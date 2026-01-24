@@ -1,0 +1,11 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://bqt5ofv8eoti3"]
+
+[ext_resource type="Shader" uid="uid://br8gkkily4yeb" path="res://interface/window_main/board/background/shader.gdshader" id="1_e7elm"]
+
+[resource]
+shader = ExtResource("1_e7elm")
+shader_parameter/replace_color = Color(1, 1, 1, 1)
+shader_parameter/color_1 = Color(0.95686275, 0.7019608, 0.25882354, 1)
+shader_parameter/color_2 = Color(0.87058824, 0.101960786, 0.34509805, 1)
+shader_parameter/speed = 3.0
+shader_parameter/wave_scale = 100.0

@@ -14,3 +14,6 @@ func _ready() -> void:
 func _on_target_select(pos: Vector2i, _path: PackedVector2Array) -> void:
 	position = pos * Global.TILE_SIZE
 	visible = true
+
+func _on_path_follow_finished() -> void:
+	visible = false

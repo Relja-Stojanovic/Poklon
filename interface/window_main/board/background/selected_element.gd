@@ -17,3 +17,6 @@ func _on_element_select(pos: Vector2i) -> void:
 
 func _on_element_cancel() -> void:
 	visible = false
+
+func _on_path_follow_finished() -> void:
+	visible = false

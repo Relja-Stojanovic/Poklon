@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://ci7cukdcxsjpq"]
+[gd_scene load_steps=17 format=3 uid="uid://ci7cukdcxsjpq"]
 
 [ext_resource type="Theme" uid="uid://csy5xf0m78gm2" path="res://textures/theme.tres" id="1_6mlf7"]
 [ext_resource type="Script" uid="uid://kuowvdd77jvp" path="res://interface/window_main/main.gd" id="2_4jocx"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://cbfbrqpjlwm2u" path="res://interface/window_main/top/menu/settings/menu.gd" id="4_er4ar"]
 [ext_resource type="Script" uid="uid://jho7c42xy578" path="res://interface/window_main/top/score.gd" id="5_8ed5t"]
 [ext_resource type="Script" uid="uid://djbimqgro8vku" path="res://interface/window_main/input.gd" id="6_gdit3"]
+[ext_resource type="Script" uid="uid://ctvhduil18yyn" path="res://interface/window_main/board/viewport.gd" id="7_6mlf7"]
 [ext_resource type="PackedScene" uid="uid://4lbxiud0jbja" path="res://interface/window_main/board/board_sceen.tscn" id="7_g1xfy"]
 [ext_resource type="Script" uid="uid://mxta8bkkeq8j" path="res://interface/window_main/preview/subviewport.gd" id="8_5kpx4"]
 [ext_resource type="TileSet" uid="uid://c2fjaac6tfuak" path="res://textures/tileset.tres" id="9_s8fps"]
@@ -18,9 +19,9 @@
 viewport_path = NodePath("Preview")
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_27kvy"]
-viewport_path = NodePath("BoardSubViewport")
+viewport_path = NodePath("Board")
 
-[node name="Root" type="Control"]
+[node name="Root" type="Control" node_paths=PackedStringArray("board_display")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -29,6 +30,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_6mlf7")
 script = ExtResource("2_4jocx")
+board_display = NodePath("Board/Root")
 
 [node name="UI" type="VBoxContainer" parent="."]
 layout_mode = 1
@@ -59,7 +61,7 @@ script = ExtResource("3_oqinm")
 layout_mode = 2
 text = "Podešavanja"
 flat = false
-item_count = 3
+item_count = 5
 popup/item_0/text = "Zvuk"
 popup/item_0/checkable = 1
 popup/item_0/id = 1
@@ -67,7 +69,10 @@ popup/item_1/text = "Muzika"
 popup/item_1/checkable = 1
 popup/item_1/id = 2
 popup/item_2/text = "Stil"
+popup/item_2/checked = true
 popup/item_2/id = 0
+popup/item_3/id = 3
+popup/item_4/id = 4
 script = ExtResource("4_er4ar")
 
 [node name="Score" type="Label" parent="UI/Top"]
@@ -100,8 +105,10 @@ texture = SubResource("ViewportTexture_27kvy")
 expand_mode = 1
 script = ExtResource("6_gdit3")
 
-[node name="BoardSubViewport" parent="." instance=ExtResource("7_g1xfy")]
-unique_name_in_owner = true
+[node name="Board" type="SubViewport" parent="."]
+script = ExtResource("7_6mlf7")
+
+[node name="Root" parent="Board" instance=ExtResource("7_g1xfy")]
 
 [node name="Preview" type="SubViewport" parent="."]
 disable_3d = true

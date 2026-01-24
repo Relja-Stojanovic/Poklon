@@ -1,7 +1,7 @@
 extends Control
 
 var data: GameData
-@onready var board_display: BoardSubViewport = %BoardSubViewport
+@export var board_display: BoardDisplay
 
 func _ready() -> void:
 	data = Global.data
@@ -24,6 +24,7 @@ func _notification(what: int) -> void:
 #region Selecting and Moving
 var selected_pos: Vector2i = Vector2i.MIN
 var pathfind: Pathfind
+var input_active: bool = true
 
 func reset_selection() -> void:
 	selected_pos = Vector2i.MIN
@@ -35,33 +36,32 @@ func has_path(path: PackedVector2Array) -> bool:
 	return not path.is_empty()
 
 func _on_board_clicked(pos: Vector2i) -> void:
+	if not input_active:
+		return
+		
 	if has_selected():
 		if pos == selected_pos:
 			reset_selection()
 			board_display.display_element_cancel()
-			print("Cancel")
 		elif data.is_empty(pos):
 			var path: PackedVector2Array = pathfind.find_path(selected_pos, pos)
 			if has_path(path):
-				print("Move start")
+				input_active = false
 				data.move_element(selected_pos, pos)
-				board_display.display_target_select(pos, path)
+				await board_display.display_target_select(pos, path)
+				input_active = true
 				reset_selection()
 				
 				var connected: bool = GameService.game_strategy.execute_match(data, pos)
 				if not connected or data.elements.is_empty():
 					GameService.spawn_elements(data)
-				print("Move end")
 			else:
 				board_display.display_target_unreachable()
-				print("No path")
 		else:
 			selected_pos = pos
 			board_display.display_element_select(selected_pos)
-			print("Reselect")
 	else:
 		if not data.is_empty(pos):
 			selected_pos = pos
-			print("Init Select")
 			board_display.display_element_select(selected_pos)
 #endregion

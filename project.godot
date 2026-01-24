@@ -8,6 +8,10 @@
 
 config_version=5
 
+[accessibility]
+
+general/accessibility_support=2
+
 [application]
 
 config/name="Poklon"
@@ -32,6 +36,7 @@ gdscript/warnings/integer_division=0
 
 window/size/viewport_width=512
 window/size/viewport_height=564
+window/size/extend_to_title=true
 window/stretch/mode="canvas_items"
 window/handheld/orientation=1
 

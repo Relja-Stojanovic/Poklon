@@ -5,6 +5,7 @@ func _ready() -> void:
 	Global.data.element_moved.connect(_on_element_moved)
 	Global.data.element_removed.connect(_on_element_removed)
 	Global.data.elements_removed.connect(_on_elements_removed)
+	
 	for pos in Global.data.elements:
 		_on_element_added(Global.data, pos)
 
