@@ -1,8 +1,5 @@
 extends Control
 
-var data: GameData
-@export var board_display: BoardDisplay
-
 func _ready() -> void:
 	data = Global.data
 	pathfind = Pathfind.new(data)
@@ -22,9 +19,13 @@ func _notification(what: int) -> void:
 
 #TODO: Code Smell
 #region Selecting and Moving
+
+@export var board_display: BoardDisplay
+var data: GameData
 var selected_pos: Vector2i = Vector2i.MIN
 var pathfind: Pathfind
 var input_active: bool = true
+
 
 func reset_selection() -> void:
 	selected_pos = Vector2i.MIN

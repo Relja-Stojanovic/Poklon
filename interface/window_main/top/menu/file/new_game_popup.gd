@@ -5,6 +5,7 @@ var input_amount: int = Global.data.spawn_amount
 var input_word: bool = Global.data.word_mode
 
 func _ready() -> void:
+	content_scale_size = size
 	$MarginContainer/Options/Size/Input.value = input_size
 	$MarginContainer/Options/SpawnAmount/Input.value = input_amount
 	$MarginContainer/Options/WordMode.button_pressed  = input_word

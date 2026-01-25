@@ -6,8 +6,8 @@ enum {
 	QUIT
 }
 
-@onready var new_game_popup: Window = %NewGamePopup
-@onready var high_scores_popup: Window = %HighScore
+@onready var new_game_popup: Window = %NewGame
+@onready var high_scores_popup: Window = %Highscore
 
 func _ready() -> void:
 	get_popup().index_pressed.connect(_on_index_pressed)

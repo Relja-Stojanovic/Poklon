@@ -2,6 +2,9 @@ extends Window
 
 @onready var list := %List
 
+func _ready() -> void:
+	content_scale_size = size
+
 func _on_visibility_changed() -> void:
 	if not visible:
 		return
@@ -11,7 +14,7 @@ func _on_visibility_changed() -> void:
 		
 	var data: Highscore = DataHandler.load_file(Path.HIGHSCORE_PATH, Highscore)
 	for i in range(Highscore.LIMIT):
-		list.get_child(i).set_data(data.name[i], data.scores[i])
+		list.get_child(i).set_data(data.names[i], data.scores[i])
 	
 func _on_close_requested() -> void:
 	hide()

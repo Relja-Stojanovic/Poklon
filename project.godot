@@ -50,6 +50,10 @@ folder_colors={
 "res://textures/": "purple"
 }
 
+[global_group]
+
+game_over_window=""
+
 [input]
 
 click={

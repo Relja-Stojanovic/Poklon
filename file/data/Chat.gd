@@ -17,7 +17,7 @@ func to_str(ball_id: int) -> String:
 		Element.BALL_PURPLE:
 			return "Ljubičasta"
 		Element.BALL_BROWN:
-			return "Smeća"
+			return "Smeđa"
 		_:
 			return ""
 

@@ -1,19 +1,20 @@
-[gd_scene load_steps=17 format=3 uid="uid://ci7cukdcxsjpq"]
+[gd_scene load_steps=18 format=3 uid="uid://ci7cukdcxsjpq"]
 
 [ext_resource type="Theme" uid="uid://csy5xf0m78gm2" path="res://textures/theme.tres" id="1_6mlf7"]
 [ext_resource type="Script" uid="uid://kuowvdd77jvp" path="res://interface/window_main/main.gd" id="2_4jocx"]
 [ext_resource type="Script" uid="uid://kyelgpl4uka3" path="res://interface/window_main/top/menu/file/menu.gd" id="3_oqinm"]
 [ext_resource type="Script" uid="uid://cbfbrqpjlwm2u" path="res://interface/window_main/top/menu/settings/menu.gd" id="4_er4ar"]
 [ext_resource type="Script" uid="uid://jho7c42xy578" path="res://interface/window_main/top/score.gd" id="5_8ed5t"]
+[ext_resource type="Script" uid="uid://cyq38bk58pjkg" path="res://interface/window_main/top/preview.gd" id="6_4jocx"]
 [ext_resource type="Script" uid="uid://djbimqgro8vku" path="res://interface/window_main/input.gd" id="6_gdit3"]
 [ext_resource type="Script" uid="uid://ctvhduil18yyn" path="res://interface/window_main/board/viewport.gd" id="7_6mlf7"]
 [ext_resource type="PackedScene" uid="uid://4lbxiud0jbja" path="res://interface/window_main/board/board_sceen.tscn" id="7_g1xfy"]
 [ext_resource type="Script" uid="uid://mxta8bkkeq8j" path="res://interface/window_main/preview/subviewport.gd" id="8_5kpx4"]
 [ext_resource type="TileSet" uid="uid://c2fjaac6tfuak" path="res://textures/tileset.tres" id="9_s8fps"]
 [ext_resource type="Script" uid="uid://y87xjiajg2ic" path="res://interface/window_main/preview/grid.gd" id="10_ep230"]
-[ext_resource type="Script" uid="uid://bp175he2qetv1" path="res://interface/window_main/top/menu/file/new_game_popup.gd" id="11_0ldvd"]
-[ext_resource type="Script" uid="uid://chmms0mtqyvqu" path="res://file/highscore/display/high_score.gd" id="12_uuest"]
-[ext_resource type="PackedScene" uid="uid://caxlykavcnmo0" path="res://file/highscore/display/sceen.tscn" id="13_v3uix"]
+[ext_resource type="PackedScene" uid="uid://cyrecge66ebt6" path="res://interface/window_main/top/menu/file/new_game/window_sceen.tscn" id="13_6mlf7"]
+[ext_resource type="PackedScene" uid="uid://5b50t3miwmh6" path="res://interface/window_main/top/menu/file/highscore/window_sceen.tscn" id="14_4jocx"]
+[ext_resource type="PackedScene" uid="uid://dwegaf8mwepa2" path="res://interface/window_main/game_over/window_sceen.tscn" id="15_4jocx"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_x7vg5"]
 viewport_path = NodePath("Preview")
@@ -30,7 +31,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_6mlf7")
 script = ExtResource("2_4jocx")
-board_display = NodePath("Board/Root")
+board_display = NodePath("Board/BoardDisplay")
 
 [node name="UI" type="VBoxContainer" parent="."]
 layout_mode = 1
@@ -64,14 +65,18 @@ flat = false
 item_count = 5
 popup/item_0/text = "Zvuk"
 popup/item_0/checkable = 1
-popup/item_0/id = 1
+popup/item_0/id = 0
 popup/item_1/text = "Muzika"
 popup/item_1/checkable = 1
-popup/item_1/id = 2
-popup/item_2/text = "Stil"
-popup/item_2/checked = true
-popup/item_2/id = 0
+popup/item_1/id = 1
+popup/item_2/text = "Vidi Sledeće"
+popup/item_2/checkable = 1
+popup/item_2/id = 2
+popup/item_3/text = "Prozor Istorije"
+popup/item_3/checkable = 1
 popup/item_3/id = 3
+popup/item_4/text = "Prozor Statistike"
+popup/item_4/checkable = 1
 popup/item_4/id = 4
 script = ExtResource("4_er4ar")
 
@@ -88,6 +93,7 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 draw_focus_border = true
 vertical_scroll_mode = 0
+script = ExtResource("6_4jocx")
 
 [node name="TextureRect" type="TextureRect" parent="UI/Top/Preview"]
 layout_mode = 2
@@ -108,7 +114,7 @@ script = ExtResource("6_gdit3")
 [node name="Board" type="SubViewport" parent="."]
 script = ExtResource("7_6mlf7")
 
-[node name="Root" parent="Board" instance=ExtResource("7_g1xfy")]
+[node name="BoardDisplay" parent="Board" instance=ExtResource("7_g1xfy")]
 
 [node name="Preview" type="SubViewport" parent="."]
 disable_3d = true
@@ -121,164 +127,12 @@ script = ExtResource("8_5kpx4")
 tile_set = ExtResource("9_s8fps")
 script = ExtResource("10_ep230")
 
-[node name="NewGamePopup" type="Window" parent="."]
+[node name="NewGame" parent="." instance=ExtResource("13_6mlf7")]
 unique_name_in_owner = true
-disable_3d = true
-oversampling_override = 1.0
-title = "Nova Igra"
-initial_position = 1
-size = Vector2i(300, 160)
-visible = false
-transient = true
-exclusive = true
-unresizable = true
-popup_window = true
-script = ExtResource("11_0ldvd")
 
-[node name="MarginContainer" type="MarginContainer" parent="NewGamePopup"]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme = ExtResource("1_6mlf7")
-
-[node name="Options" type="VBoxContainer" parent="NewGamePopup/MarginContainer"]
-layout_mode = 2
-theme = ExtResource("1_6mlf7")
-
-[node name="Size" type="HBoxContainer" parent="NewGamePopup/MarginContainer/Options"]
-layout_mode = 2
-theme = ExtResource("1_6mlf7")
-
-[node name="Label" type="Label" parent="NewGamePopup/MarginContainer/Options/Size"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme = ExtResource("1_6mlf7")
-theme_override_font_sizes/font_size = 20
-text = "Veličina Table"
-
-[node name="Input" type="SpinBox" parent="NewGamePopup/MarginContainer/Options/Size"]
-layout_mode = 2
-size_flags_horizontal = 8
-theme = ExtResource("1_6mlf7")
-min_value = 3.0
-max_value = 50.0
-value = 9.0
-rounded = true
-
-[node name="SpawnAmount" type="HBoxContainer" parent="NewGamePopup/MarginContainer/Options"]
-layout_mode = 2
-theme = ExtResource("1_6mlf7")
-
-[node name="Label" type="Label" parent="NewGamePopup/MarginContainer/Options/SpawnAmount"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme = ExtResource("1_6mlf7")
-theme_override_font_sizes/font_size = 20
-text = "Dodati po potezu"
-
-[node name="Input" type="SpinBox" parent="NewGamePopup/MarginContainer/Options/SpawnAmount"]
-layout_mode = 2
-size_flags_horizontal = 8
-theme = ExtResource("1_6mlf7")
-min_value = 1.0
-max_value = 50.0
-value = 3.0
-rounded = true
-
-[node name="WordMode" type="CheckBox" parent="NewGamePopup/MarginContainer/Options"]
-layout_mode = 2
-theme = ExtResource("1_6mlf7")
-text = "Slova"
-
-[node name="Confirm" type="HBoxContainer" parent="NewGamePopup/MarginContainer/Options"]
-layout_mode = 2
-size_flags_vertical = 10
-theme = ExtResource("1_6mlf7")
-
-[node name="Cancel" type="Button" parent="NewGamePopup/MarginContainer/Options/Confirm"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme = ExtResource("1_6mlf7")
-text = "Odustani"
-
-[node name="Start" type="Button" parent="NewGamePopup/MarginContainer/Options/Confirm"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme = ExtResource("1_6mlf7")
-text = "Počni"
-
-[node name="HighScore" type="Window" parent="."]
+[node name="Highscore" parent="." instance=ExtResource("14_4jocx")]
 unique_name_in_owner = true
-disable_3d = true
-oversampling_override = 1.0
-title = "Najbolji rezultati"
-initial_position = 1
-size = Vector2i(600, 300)
-visible = false
-transient = true
-exclusive = true
-unresizable = true
-popup_window = true
-script = ExtResource("12_uuest")
 
-[node name="MarginContainer" type="MarginContainer" parent="HighScore"]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme = ExtResource("1_6mlf7")
-
-[node name="ScrollContainer" type="ScrollContainer" parent="HighScore/MarginContainer"]
-layout_mode = 2
-theme = ExtResource("1_6mlf7")
-horizontal_scroll_mode = 0
-
-[node name="List" type="VBoxContainer" parent="HighScore/MarginContainer/ScrollContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-theme = ExtResource("1_6mlf7")
-
-[node name="Score1" parent="HighScore/MarginContainer/ScrollContainer/List" instance=ExtResource("13_v3uix")]
-layout_mode = 2
-
-[node name="Score2" parent="HighScore/MarginContainer/ScrollContainer/List" instance=ExtResource("13_v3uix")]
-layout_mode = 2
-
-[node name="Score3" parent="HighScore/MarginContainer/ScrollContainer/List" instance=ExtResource("13_v3uix")]
-layout_mode = 2
-
-[node name="Score4" parent="HighScore/MarginContainer/ScrollContainer/List" instance=ExtResource("13_v3uix")]
-layout_mode = 2
-
-[node name="Score5" parent="HighScore/MarginContainer/ScrollContainer/List" instance=ExtResource("13_v3uix")]
-layout_mode = 2
-
-[node name="Score6" parent="HighScore/MarginContainer/ScrollContainer/List" instance=ExtResource("13_v3uix")]
-layout_mode = 2
-
-[node name="Score7" parent="HighScore/MarginContainer/ScrollContainer/List" instance=ExtResource("13_v3uix")]
-layout_mode = 2
-
-[node name="Score8" parent="HighScore/MarginContainer/ScrollContainer/List" instance=ExtResource("13_v3uix")]
-layout_mode = 2
-
-[node name="Score9" parent="HighScore/MarginContainer/ScrollContainer/List" instance=ExtResource("13_v3uix")]
-layout_mode = 2
-
-[node name="Score10" parent="HighScore/MarginContainer/ScrollContainer/List" instance=ExtResource("13_v3uix")]
-layout_mode = 2
+[node name="Window" parent="." instance=ExtResource("15_4jocx")]
 
 [connection signal="board_clicked" from="UI/Board" to="." method="_on_board_clicked"]
-[connection signal="close_requested" from="NewGamePopup" to="NewGamePopup" method="_on_close_requested"]
-[connection signal="value_changed" from="NewGamePopup/MarginContainer/Options/Size/Input" to="NewGamePopup" method="_on_input_size"]
-[connection signal="value_changed" from="NewGamePopup/MarginContainer/Options/SpawnAmount/Input" to="NewGamePopup" method="_on_input_amount"]
-[connection signal="toggled" from="NewGamePopup/MarginContainer/Options/WordMode" to="NewGamePopup" method="_on_input_word"]
-[connection signal="pressed" from="NewGamePopup/MarginContainer/Options/Confirm/Cancel" to="NewGamePopup" method="_on_cancel_pressed"]
-[connection signal="pressed" from="NewGamePopup/MarginContainer/Options/Confirm/Start" to="NewGamePopup" method="_on_start_pressed"]
-[connection signal="close_requested" from="HighScore" to="HighScore" method="_on_close_requested"]
-[connection signal="visibility_changed" from="HighScore" to="HighScore" method="_on_visibility_changed"]

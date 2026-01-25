@@ -9,7 +9,7 @@ func _ready() -> void:
 func _on_path_finished(path: PackedVector2Array) -> void:
 	progress_ratio = 0
 	
-	var tween: Tween = create_tween().set_trans(Tween.TRANS_LINEAR)
+	var tween: Tween = create_tween().set_trans(Tween.TRANS_CIRC)
 	var duration: float = float(path.size()) / 7
 	
 	tween.tween_property(self, "progress_ratio", 1.0, duration)
