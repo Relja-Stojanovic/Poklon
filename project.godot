@@ -18,7 +18,7 @@ config/name="Poklon"
 run/main_scene="uid://ci7cukdcxsjpq"
 config/features=PackedStringArray("4.5", "GL Compatibility")
 boot_splash/show_image=false
-config/icon="res://textures/icon.svg"
+config/icon="res://assets/texture/icon.svg"
 
 [autoload]
 
@@ -43,16 +43,20 @@ window/handheld/orientation=1
 [file_customization]
 
 folder_colors={
+"res://assets/": "purple",
 "res://file/": "yellow",
 "res://interface/": "green",
 "res://logic/": "teal",
-"res://logic/game_strategy/": "blue",
-"res://textures/": "purple"
+"res://logic/game_strategy/": "blue"
 }
 
 [global_group]
 
 game_over_window=""
+
+[gui]
+
+theme/custom="uid://csy5xf0m78gm2"
 
 [input]
 

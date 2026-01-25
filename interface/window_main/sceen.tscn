@@ -1,16 +1,16 @@
 [gd_scene load_steps=18 format=3 uid="uid://ci7cukdcxsjpq"]
 
-[ext_resource type="Theme" uid="uid://csy5xf0m78gm2" path="res://textures/theme.tres" id="1_6mlf7"]
 [ext_resource type="Script" uid="uid://kuowvdd77jvp" path="res://interface/window_main/main.gd" id="2_4jocx"]
 [ext_resource type="Script" uid="uid://kyelgpl4uka3" path="res://interface/window_main/top/menu/file/menu.gd" id="3_oqinm"]
 [ext_resource type="Script" uid="uid://cbfbrqpjlwm2u" path="res://interface/window_main/top/menu/settings/menu.gd" id="4_er4ar"]
 [ext_resource type="Script" uid="uid://jho7c42xy578" path="res://interface/window_main/top/score.gd" id="5_8ed5t"]
+[ext_resource type="Theme" uid="uid://b3171v3c8d6od" path="res://assets/theme/score.tres" id="5_oqinm"]
 [ext_resource type="Script" uid="uid://cyq38bk58pjkg" path="res://interface/window_main/top/preview.gd" id="6_4jocx"]
 [ext_resource type="Script" uid="uid://djbimqgro8vku" path="res://interface/window_main/input.gd" id="6_gdit3"]
 [ext_resource type="Script" uid="uid://ctvhduil18yyn" path="res://interface/window_main/board/viewport.gd" id="7_6mlf7"]
 [ext_resource type="PackedScene" uid="uid://4lbxiud0jbja" path="res://interface/window_main/board/board_sceen.tscn" id="7_g1xfy"]
 [ext_resource type="Script" uid="uid://mxta8bkkeq8j" path="res://interface/window_main/preview/subviewport.gd" id="8_5kpx4"]
-[ext_resource type="TileSet" uid="uid://c2fjaac6tfuak" path="res://textures/tileset.tres" id="9_s8fps"]
+[ext_resource type="TileSet" uid="uid://c2fjaac6tfuak" path="res://assets/res/tileset.tres" id="9_s8fps"]
 [ext_resource type="Script" uid="uid://y87xjiajg2ic" path="res://interface/window_main/preview/grid.gd" id="10_ep230"]
 [ext_resource type="PackedScene" uid="uid://cyrecge66ebt6" path="res://interface/window_main/top/menu/file/new_game/window_sceen.tscn" id="13_6mlf7"]
 [ext_resource type="PackedScene" uid="uid://5b50t3miwmh6" path="res://interface/window_main/top/menu/file/highscore/window_sceen.tscn" id="14_4jocx"]
@@ -29,7 +29,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource("1_6mlf7")
 script = ExtResource("2_4jocx")
 board_display = NodePath("Board/BoardDisplay")
 
@@ -83,6 +82,7 @@ script = ExtResource("4_er4ar")
 [node name="Score" type="Label" parent="UI/Top"]
 layout_mode = 2
 size_flags_horizontal = 4
+theme = ExtResource("5_oqinm")
 text = "0000000"
 horizontal_alignment = 1
 script = ExtResource("5_8ed5t")
@@ -125,6 +125,9 @@ script = ExtResource("8_5kpx4")
 
 [node name="Grid" type="TileMapLayer" parent="Preview"]
 tile_set = ExtResource("9_s8fps")
+occlusion_enabled = false
+collision_enabled = false
+navigation_enabled = false
 script = ExtResource("10_ep230")
 
 [node name="NewGame" parent="." instance=ExtResource("13_6mlf7")]

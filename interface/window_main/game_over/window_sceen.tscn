@@ -1,7 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://dwegaf8mwepa2"]
+[gd_scene load_steps=3 format=3 uid="uid://dwegaf8mwepa2"]
 
 [ext_resource type="Script" uid="uid://b2dmy8bwpmaqu" path="res://interface/window_main/game_over/window.gd" id="1_jnjxx"]
-[ext_resource type="Theme" uid="uid://csy5xf0m78gm2" path="res://textures/theme.tres" id="2_abn46"]
 [ext_resource type="Script" uid="uid://bcvcuv2a6lc5m" path="res://interface/window_main/game_over/score.gd" id="3_xmh3l"]
 
 [node name="Window" type="Window" groups=["game_over_window"]]
@@ -28,7 +27,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource("2_abn46")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
 layout_mode = 2
