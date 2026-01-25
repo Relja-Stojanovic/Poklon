@@ -12,7 +12,6 @@ size = Vector2i(360, 160)
 visible = false
 transient = true
 exclusive = true
-always_on_top = true
 extend_to_title = true
 minimize_disabled = true
 maximize_disabled = true

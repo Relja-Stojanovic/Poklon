@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://4lbxiud0jbja"]
+[gd_scene load_steps=21 format=3 uid="uid://4lbxiud0jbja"]
 
 [ext_resource type="Script" uid="uid://dexk1h44me5ni" path="res://interface/window_main/board/BoardDisplay.gd" id="1_1hxrx"]
 [ext_resource type="Material" uid="uid://cgrwo7btxfexx" path="res://assets/res/background_mat.tres" id="2_mxpwo"]
@@ -30,32 +30,37 @@ step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Path:visible")
+tracks/0/path = NodePath("SelectedTargetBackground:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
 }
 
-[sub_resource type="Animation" id="Animation_2g4vx"]
-resource_name = "element_select"
-loop_mode = 1
-step = 0.1
-
 [sub_resource type="Animation" id="Animation_uu58p"]
-resource_name = "test"
-length = 3.0
-loop_mode = 1
+resource_name = "target_select"
+length = 0.5
 step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SelectedTargetBackground:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(-0.5, -0.5),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0.49803922)]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_j4b6b"]
 _data = {
 &"RESET": SubResource("Animation_wdrx5"),
-&"element_select": SubResource("Animation_2g4vx"),
-&"test": SubResource("Animation_uu58p")
+&"target_select": SubResource("Animation_uu58p")
 }
 
 [node name="Root" type="Node2D"]
@@ -86,7 +91,6 @@ script = ExtResource("6_m0vjf")
 
 [node name="SelectedTargetBackground" type="Sprite2D" parent="."]
 visible = false
-modulate = Color(1, 1, 1, 0.94854254)
 material = ExtResource("6_grynd")
 texture = ExtResource("5_b0jsy")
 centered = false
@@ -124,13 +128,12 @@ script = ExtResource("9_cbklj")
 
 [connection signal="element_cancel" from="." to="SelectedElementBackground" method="_on_element_cancel"]
 [connection signal="element_cancel" from="." to="SelectedElement" method="_on_element_cancel"]
-[connection signal="element_cancel" from="." to="AnimationPlayer" method="_on_element_cancel"]
 [connection signal="element_select" from="." to="SelectedElementBackground" method="_on_element_select"]
 [connection signal="element_select" from="." to="SelectedElement" method="_on_element_select"]
-[connection signal="element_select" from="." to="AnimationPlayer" method="_on_element_select"]
 [connection signal="target_select" from="." to="SelectedTargetBackground" method="_on_target_select"]
 [connection signal="target_select" from="." to="SelectedElement" method="_on_target_select"]
 [connection signal="target_select" from="." to="Path/PathFollow/MovingElement" method="_on_target_select"]
+[connection signal="target_select" from="." to="AnimationPlayer" method="_on_target_select"]
 [connection signal="finished" from="Path" to="Path/PathFollow" method="_on_path_finished"]
 [connection signal="finished" from="Path/PathFollow" to="SelectedElementBackground" method="_on_path_follow_finished"]
 [connection signal="finished" from="Path/PathFollow" to="SelectedTargetBackground" method="_on_path_follow_finished"]
