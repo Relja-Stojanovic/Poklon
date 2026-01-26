@@ -1,13 +1,12 @@
 class_name BallGameStrategy extends GameStrategy
 
-const MATCH_MIN = 5
+const MATCH_MIN: int = 5
 const AXES := [
 		[Vector2i(1, 0), Vector2i(-1, 0)], # Horizontal -
 		[Vector2i(0, 1), Vector2i(0, -1)],  # Vertical  |
 		[Vector2i(1, 1), Vector2i(-1, -1)], # Diagonal LR \
 		[Vector2i(1, -1), Vector2i(-1, 1)] # Diagonal RL /
 	]
-	
 var target_element: int
 
 func gen_preview_element() -> int:

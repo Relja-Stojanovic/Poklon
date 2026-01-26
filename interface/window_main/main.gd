@@ -26,7 +26,6 @@ var selected_pos: Vector2i = Vector2i.MIN
 var pathfind: Pathfind
 var input_active: bool = true
 
-
 func reset_selection() -> void:
 	selected_pos = Vector2i.MIN
 	

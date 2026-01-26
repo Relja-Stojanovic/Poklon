@@ -112,18 +112,36 @@ expand_mode = 1
 script = ExtResource("6_gdit3")
 
 [node name="Board" type="SubViewport" parent="."]
+disable_3d = true
+handle_input_locally = false
+canvas_item_default_texture_filter = 0
+gui_disable_input = true
+gui_snap_controls_to_pixels = false
+positional_shadow_atlas_quad_0 = 0
+positional_shadow_atlas_quad_1 = 0
+positional_shadow_atlas_quad_2 = 0
+positional_shadow_atlas_quad_3 = 0
 script = ExtResource("7_6mlf7")
 
 [node name="BoardDisplay" parent="Board" instance=ExtResource("7_g1xfy")]
+physics_interpolation_mode = 2
 
 [node name="Preview" type="SubViewport" parent="."]
 disable_3d = true
 transparent_bg = true
+handle_input_locally = false
+canvas_item_default_texture_filter = 0
 gui_disable_input = true
+gui_snap_controls_to_pixels = false
+positional_shadow_atlas_quad_0 = 0
+positional_shadow_atlas_quad_1 = 0
+positional_shadow_atlas_quad_2 = 0
+positional_shadow_atlas_quad_3 = 0
 size = Vector2i(48, 16)
 script = ExtResource("8_5kpx4")
 
 [node name="Grid" type="TileMapLayer" parent="Preview"]
+physics_interpolation_mode = 2
 tile_set = ExtResource("9_s8fps")
 occlusion_enabled = false
 collision_enabled = false

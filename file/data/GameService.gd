@@ -32,7 +32,6 @@ static func spawn_elements(data: GameData) -> void:
 		return
 	
 	var empty_cells: Array[Vector2i] = GameService.get_empty_cells(data)
-
 	for i in data.spawn_amount:
 		var pos: Vector2i = empty_cells.pop_back()
 		var element: int = data.preview.pop_back()

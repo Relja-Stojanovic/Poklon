@@ -64,6 +64,7 @@ _data = {
 }
 
 [node name="Root" type="Node2D"]
+physics_interpolation_mode = 2
 script = ExtResource("1_1hxrx")
 
 [node name="Background" type="TileMapLayer" parent="."]
