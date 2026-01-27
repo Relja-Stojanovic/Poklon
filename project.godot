@@ -12,11 +12,15 @@ config_version=5
 
 general/accessibility_support=2
 
+[animation]
+
+compatibility/default_parent_skeleton_in_mesh_instance_3d=true
+
 [application]
 
 config/name="Poklon"
 run/main_scene="uid://ci7cukdcxsjpq"
-config/features=PackedStringArray("4.5", "GL Compatibility")
+config/features=PackedStringArray("4.6", "GL Compatibility")
 boot_splash/show_image=false
 config/icon="res://assets/texture/icon.svg"
 
@@ -25,8 +29,9 @@ config/icon="res://assets/texture/icon.svg"
 DataHandler="*res://file/handler/DataHandler.gd"
 Path="*res://file/handler/Path.gd"
 Global="*res://Global.gd"
+GameService="*uid://cfmmj44m2krbu"
 Element="*res://file/data/Element.gd"
-Chat="*res://file/data/Chat.gd"
+Chat="*res://logic/ChatService.gd"
 
 [debug]
 
@@ -39,6 +44,7 @@ window/size/viewport_height=564
 window/size/extend_to_title=true
 window/stretch/mode="canvas_items"
 window/handheld/orientation=1
+window/vsync/vsync_mode=0
 
 [file_customization]
 
@@ -65,6 +71,10 @@ click={
 "events": [Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"button_mask":0,"position":Vector2(0, 0),"global_position":Vector2(0, 0),"factor":1.0,"button_index":1,"canceled":false,"pressed":false,"double_click":false,"script":null)
 ]
 }
+
+[physics]
+
+common/physics_ticks_per_second=1
 
 [rendering]
 

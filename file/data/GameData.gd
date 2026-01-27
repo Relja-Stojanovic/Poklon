@@ -13,6 +13,7 @@ signal preview_changed(data: GameData)
 @export var elements: Dictionary[Vector2i, int] = {}
 @export var preview: Array[int] = []
 @export var score: int = 0
+var chase: GameChase
 
 #region Element
 func is_empty(pos: Vector2i) -> bool:

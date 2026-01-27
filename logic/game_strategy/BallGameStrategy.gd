@@ -36,7 +36,7 @@ func execute_match(data: GameData, pos: Vector2i) -> bool:
 		data.remove_elements(total_to_remove)
 		
 		var n: int = total_to_remove.size()
-		var score: int = (n-4)*2*n
+		var score: int = ScoreService.get_score(n)
 		data.add_score(score)
 		Chat.info_ball(target_element, total_to_remove.size())
 		return true

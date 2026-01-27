@@ -1,6 +1,5 @@
 class_name BoardDisplay extends Node2D
 
-#NOTE: This whole sceen is a war crime
 signal element_select(pos: Vector2i)
 signal element_cancel()
 signal target_select(pos: Vector2i, path: PackedVector2Array)

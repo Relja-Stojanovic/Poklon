@@ -21,15 +21,9 @@ func _init(init_data: GameData) -> void:
 	sync_pathfinding()
 
 func sync_pathfinding() -> void:
-	# Check if there are more empty or ocupied slots
-	if data.elements.size() > data.size*data.size/2:
-		astar.fill_solid_region(astar.region, true)
-		for cell in GameService.get_empty_cells(data):
-			astar.set_point_solid(cell, false)
-	else:
-		astar.fill_solid_region(astar.region, false)
-		for element in data.elements:
-			astar.set_point_solid(element, true)
+	astar.fill_solid_region(astar.region, false)
+	for pos in data.elements:
+		astar.set_point_solid(pos, true)
 
 func _on_element_moved(_data: GameData, old_pos: Vector2i, new_pos: Vector2i) -> void:
 	astar.set_point_solid(old_pos, false)
@@ -44,6 +38,3 @@ func _on_element_removed(_data: GameData, pos: Vector2i) -> void:
 func _on_elements_removed(_data: GameData, array: Array[Vector2i]) -> void:
 	for pos in array:
 		astar.set_point_solid(pos, false)
-
-func find_path(start: Vector2i, target: Vector2i) -> PackedVector2Array:
-	return astar.get_id_path(start, target, false)

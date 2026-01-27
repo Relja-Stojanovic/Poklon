@@ -30,7 +30,7 @@ func _on_start_pressed() -> void:
 	
 	Global.data = new_data
 	DataHandler.save_file(Global.data, Path.DATA_PATH)
-	get_tree().reload_current_scene()
+	get_tree().reload_current_scene.call_deferred()
 
 func _on_close_requested() -> void:
 	hide()

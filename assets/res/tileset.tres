@@ -1,6 +1,7 @@
-[gd_resource type="TileSet" load_steps=3 format=3 uid="uid://c2fjaac6tfuak"]
+[gd_resource type="TileSet" format=3 uid="uid://c2fjaac6tfuak"]
 
 [ext_resource type="Texture2D" uid="uid://c6bmny5thl2b3" path="res://assets/texture/texture.png" id="1_0ga4t"]
+[ext_resource type="PackedScene" uid="uid://b4y7ub33upe5k" path="res://interface/window_main/board/elements/display/sceen.tscn" id="2_8xagv"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_oh8jp"]
 texture = ExtResource("1_0ga4t")
@@ -46,6 +47,11 @@ texture_region_size = Vector2i(80, 80)
 4:7/0 = 0
 4:1/0 = 0
 
+[sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_vws5v"]
+resource_name = "Element"
+scenes/1/scene = ExtResource("2_8xagv")
+
 [resource]
 tile_size = Vector2i(80, 80)
 sources/0 = SubResource("TileSetAtlasSource_oh8jp")
+sources/1 = SubResource("TileSetScenesCollectionSource_vws5v")

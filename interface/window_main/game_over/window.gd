@@ -13,4 +13,4 @@ func _on_confirm_pressed() -> void:
 	var highscore: Highscore = DataHandler.load_file(Path.HIGHSCORE_PATH, Highscore)
 	highscore.add_game(user_name, Global.final_score)
 	DataHandler.save_file(highscore, Path.HIGHSCORE_PATH)
-	get_tree().reload_current_scene()
+	get_tree().reload_current_scene.call_deferred()
